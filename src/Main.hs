@@ -9,9 +9,9 @@ import Text.Editor
 
 main :: IO ()
 main =
-  do dirPath <- getXdgDirectory XdgData "dayj"
+  do dirPath <- getHomeDirectory
      createDirectoryIfMissing True dirPath
-     let fp = mappend dirPath "/journal.yaml"
+     let fp = mappend dirPath "/.journal.yaml"
      fexists <- doesFileExist fp
      existingJournal <-
        if not fexists
@@ -38,4 +38,4 @@ formatDay :: Day -> String
 formatDay = formatTime defaultTimeLocale dayFormatString
 
 dayFormatString :: String
-dayFormatString = "%A, %B %-e, %Y (%Z)"
+dayFormatString = "%F"
